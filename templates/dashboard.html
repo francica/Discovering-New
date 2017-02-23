@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>Discovering - Dashboard</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+
+<!-- my css files -->
+<link href="../static/css/dashboard.css" rel="stylesheet" type="text/css">
+{% include "style.html" %}
+
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-md page-header-fixed page-sidebar-closed-hide-logo ">
+<!-- BEGIN HEADER -->
+{% include "navbar.html" %}
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+	<!-- BEGIN CONTENT -->
+	<div id="content" style="margin-top:20px; padding:100px;">
+		<div class="row">
+			<!-- User Information -->
+			<div class="col-md-4" style="height:100%;">
+				<div class="portlet light" style="height:580px;">
+						<div class="portlet-title">
+							<div class="actions">
+								<div>
+									<img id="like-image" src="../static/images/{{like}}.jpg">
+									<p id="likes">{{numOfLikes}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="portlet-body" style="text-align:center;">
+							<div id="org-information">
+								<div style="width:100%; height:200px;"><img src="../static/images/bg6.jpg" id="user-photo"></div>
+								<p>{{organization.username}}</p>
+								<p>{{organization.email}}</p>
+								<button class="btn purple follow-btn">Follow</button>
+							</div>
+						</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+			<!-- Quizzes and Comments -->
+			<div class="col-md-7">
+				<!-- Related Organizations -->
+				<div class="row">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption font-purple-plum">
+								<span class="caption-subject bold uppercase">You May Also Like...</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+								<i class="icon-cloud-upload"></i>
+								</a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div id="context" data-toggle="context" data-target="#context-menu">
+								<div id="" style="padding-right: 20px; padding-left:20px; padding-bottom: 20px;">
+									{% for relatedOrg in relatedOrgs %}
+										{% if loop.index0 % 4 == 0 %}
+											<div class="row">
+										{% endif %}
+
+										<div class="col-md-3 org-card" style="height:120px;">
+												<div class="org-card-image-wrapper">
+													<a href="{{relatedOrg.objectId}}"><img src="../static/images/bg6.jpg" class="org-card-image">
+													<div class="org-card-blur"></div>
+													<p class="org-card-name">{{relatedOrg.username}}</p></a>
+												</div>
+										</div>
+
+										{% if loop.index0 % 4 == 3 %}
+											</div>
+										{% endif %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Comments -->
+				<div class="row">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption font-purple-plum">
+								<i class="icon-speech font-purple-plum"></i>
+								<span class="caption-subject bold uppercase"> Comment</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+								<i class="icon-cloud-upload" id="make-comment"></i>
+								</a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div id="comments" style="height:200px; overflow:auto;">
+								{% if numOfComments == 0 %}
+								<div style="text-align:center;">
+									No Comments For Now
+								</div>
+								{% else %}
+									{% for comment in comments %}
+										<div class="comment">
+											<p class="normal-text">{{comment.content}}</p>
+											<p class="sub-text">By: {{comment.poster}}</p>
+										</div>
+									{% endfor %}
+								{% endif %}
+
+
+							</div>
+							<div id="post-comment" style="display:none;">
+								<textarea id="comment-content" style="width:100%; height: 150px; padding: 10px" placeholder="Please add comment here..."></textarea>
+								<button id="post-comment-btn" class="btn purple" style="margin-top:10px;">Comment</button>
+								<button id="back-btn" class="btn purple" style="margin-top:10px;">Back</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- recently visited -->
+		<div class="row">
+			<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption font-purple-plum">
+								<span class="caption-subject bold uppercase">Visits</span>
+							</div>
+							<div class="actions">{{visitCount}}</div>
+						</div>
+						<div class="portlet-body" style="text-align:center;">
+							<div class="row">
+							{% for visit in visits %}
+								<div class="col-md-2" style="text-align: center;">
+									<img src="../static/images/bg6.jpg" style="height:80px; width: 80px; border-radius: 40px;" />
+									<p>{{visit.user.username}}</p>
+								</div>
+							{% endfor %}
+							</div>
+						</div>
+			</div>
+		</div>
+
+
+
+		<!-- followers -->
+		<div class="row">
+			<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption font-purple-plum">
+								<span class="caption-subject bold uppercase">Followers</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+								<i class="icon-cloud-upload"></i>
+								</a>
+							</div>
+						</div>
+						<div class="portlet-body" style="text-align:center;">
+							{% if numOfFollowers == 0 %}
+								<p>No Follwers</p>
+							{% endif %}
+							{% for follower in followers %}
+	
+										{% if loop.index0 % 6 == 0 %}
+											<div class="row">
+										{% endif %}
+
+										<div class="col-md-2 org-card" style="height:120px;">
+												<div class="org-card-image-wrapper">
+													<a href="{{follower.objectId}}"><img src="../static/images/bg6.jpg" class="org-card-image">
+													<div class="org-card-blur"></div>
+												
+													<p class="org-card-name">{{follower.username}}</p>
+												
+												</div>
+										</div>
+
+										{% if loop.index0 % 6 == 5 %}
+											</div>
+										{% endif %}
+							{% endfor %}
+						</div>
+			</div>
+		</div>
+
+		<!-- quizzes -->
+		<div class="row">
+			<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption font-purple-plum">
+								<span class="caption-subject bold uppercase">Quizzes</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+								<i class="icon-cloud-upload"></i>
+								</a>
+							</div>
+						</div>
+						<div class="portlet-body" id="quizzes-wrapper">
+							<div class="row">
+								<div class="col-md-4">
+									{% for quiz in quizzes %}
+										<a id="{{quiz.objectId}}">{{quiz.name}}</a></br>
+									{% endfor %}
+								</div>
+
+								<div class="col-md-8" id="quiz-detail">
+									
+								</div>
+							</div>
+						</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<!-- END CONTENT -->
+
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		 2016 &copy; Discovering
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+<!-- END FOOTER -->
+{% include "script.html" %}
+<!-- my javascript -->
+<script src="../static/js/dashboard.js" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+jQuery(document).ready(function() {       
+    // initiate layout and plugins
+    Metronic.init(); // init metronic core components
+	Layout.init(); // init current layout
+	Demo.init(); // init demo features
+    ComponentsContextMenu.init(); // init context menu demo
+
+    // store user id into session
+    username = "{{username}}";
+    target_id = "{{target_id}}";
+    numOfLikes = {{numOfLikes}};
+    // init global variables
+    var quizzes = new Array();
+});   
+</script>
+<!-- END GOOGLE RECAPTCHA -->
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

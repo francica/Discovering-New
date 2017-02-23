@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>Discovering - Dashboard</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+
+<!-- my css files -->
+<link href="../../static/organizations/css/organizations.css" rel="stylesheet" type="text/css">
+<link href="../../static/organizations/css/dashboard.css" rel="stylesheet" type="text/css">
+{% include "style.html" %}
+
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-md page-header-fixed page-sidebar-closed-hide-logo ">
+<!-- BEGIN HEADER -->
+{% include "navbar.html" %}
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+	<!-- BEGIN CONTENT -->
+
+	<div id="user-information">
+		<div class="blur-layer" style="height:700px; width:100%;"></div>
+		<h1 id="h1">Welcome Back, friend</h1>
+	</div>
+	<div id="organizations-wrapper">
+		<div id="organizations">
+			{% for organization in organizations %}
+				<!-- 4 organizations in each row -->
+				{% if loop.index0 % 3 == 0 %}
+					<div class="row">
+				{% endif %}
+
+				<!-- organization information -->
+				<div class="organization-card col-md-3 col-sm-3 col-xs-12" id="{{organization.username}}">
+						<div class="front-face">
+							{% if organizations[loop.index0].avatar %}
+								<img class="organization_avatar" src="./../static/images/blog_bg.jpg">
+                            {% else %}
+                                <img class="organization_avatar" src="./../static/images/blog_bg.jpg">
+                            {% endif %}
+							<p>{{organizations[loop.index0].email}}<br>
+							{{organizations[loop.index0].username}}</p>
+						</div>
+						
+			
+						<div class="back-face portlet portlet-sortable box red-sunglo" >
+								<div class="portlet-title">
+									<div class="caption" style="font-size:16px;">
+										{{organizations[loop.index0].username}}
+									</div>
+									<div class="actions">
+										<a href="" class="follow-btn btn btn-default btn-sm" id="{{organization.objectId}}">
+										<i class="fa fa-plus"></i> Follow </a>
+									</div>
+								</div>
+								<a href="../dashboard">
+								<div class="portlet-body" style="height: 220px;">
+									<a href="../user/{{organizations[loop.index0].objectId}}">
+									<p style="font-size: 18px;">
+										 Introduction goes here.
+									</p>
+									</a>
+								</div>
+						</div>
+				</div>
+				{% if loop.index0 % 3 == 2 %}
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		 2016 &copy; Discovering
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+<!-- END FOOTER -->
+{% include "script.html" %}
+<!-- my javascript -->
+<script src="../../static/js/dashboard.js" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+jQuery(document).ready(function() {       
+    // initiate layout and plugins
+    Metronic.init(); // init metronic core components
+	Layout.init(); // init current layout
+	Demo.init(); // init demo features
+    ComponentsContextMenu.init(); // init context menu demo
+
+
+    // init global variables
+    var quizzes = new Array();
+});   
+</script>
+<!-- END GOOGLE RECAPTCHA -->
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

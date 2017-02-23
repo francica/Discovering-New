@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta id="obj_id" style="visibility: hidden" objectId='{{objectId}}'>
+<meta charset="utf-8"/>
+<title>Metronic | Admin Dashboard Template</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+{% include "style.html" %}
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body class="page-md page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo">
+<!-- BEGIN HEADER -->
+{% include "navbar.html" %}
+
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEAD -->
+			<div class="page-head">
+				<!-- BEGIN PAGE TITLE -->
+				<div class="page-title">
+					<h1>Performance <small>statistics & reports</small></h1>
+				</div>
+				<!-- END PAGE TITLE -->
+				<!-- BEGIN PAGE TOOLBAR -->
+				{#
+				<div class="page-toolbar">
+					<!-- BEGIN THEME PANEL -->
+					<div class="btn-group btn-theme-panel">
+						<a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-settings"></i>
+						</a>
+						<div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+							<div class="row">
+								<div class="col-md-4 col-sm-4 col-xs-12">
+									<h3>THEME</h3>
+									<ul class="theme-colors">
+										<li class="theme-color theme-color-default" data-theme="default">
+											<span class="theme-color-view"></span>
+											<span class="theme-color-name">Dark Header</span>
+										</li>
+										<li class="theme-color theme-color-light active" data-theme="light">
+											<span class="theme-color-view"></span>
+											<span class="theme-color-name">Light Header</span>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-8 col-sm-8 col-xs-12 seperator">
+									<h3>LAYOUT</h3>
+									<ul class="theme-settings">
+										<li>
+											 Theme Style
+											<select class="layout-style-option form-control input-small input-sm">
+												<option value="square">Square corners</option>
+												<option value="rounded" selected="selected">Rounded corners</option>
+											</select>
+										</li>
+										<li>
+											 Layout
+											<select class="layout-option form-control input-small input-sm">
+												<option value="fluid" selected="selected">Fluid</option>
+												<option value="boxed">Boxed</option>
+											</select>
+										</li>
+										<li>
+											 Header
+											<select class="page-header-option form-control input-small input-sm">
+												<option value="fixed" selected="selected">Fixed</option>
+												<option value="default">Default</option>
+											</select>
+										</li>
+										<li>
+											 Top Dropdowns
+											<select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+												<option value="light">Light</option>
+												<option value="dark" selected="selected">Dark</option>
+											</select>
+										</li>
+										<li>
+											 Sidebar Mode
+											<select class="sidebar-option form-control input-small input-sm">
+												<option value="fixed">Fixed</option>
+												<option value="default" selected="selected">Default</option>
+											</select>
+										</li>
+										<li>
+											 Sidebar Menu
+											<select class="sidebar-menu-option form-control input-small input-sm">
+												<option value="accordion" selected="selected">Accordion</option>
+												<option value="hover">Hover</option>
+											</select>
+										</li>
+										<li>
+											 Sidebar Position
+											<select class="sidebar-pos-option form-control input-small input-sm">
+												<option value="left" selected="selected">Left</option>
+												<option value="right">Right</option>
+											</select>
+										</li>
+										<li>
+											 Footer
+											<select class="page-footer-option form-control input-small input-sm">
+												<option value="fixed">Fixed</option>
+												<option value="default" selected="selected">Default</option>
+											</select>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END THEME PANEL -->
+				</div>
+				<!-- END PAGE TOOLBAR -->
+				#}
+			</div>
+			<!-- END PAGE HEAD -->
+			<!-- BEGIN PAGE BREADCRUMB -->
+			<ul class="page-breadcrumb breadcrumb hide">
+				<li>
+					<a href="javascript:;">Home</a><i class="fa fa-circle"></i>
+				</li>
+				<li class="active">
+					 Stats
+				</li>
+			</ul>
+			<!-- END PAGE BREADCRUMB -->
+
+			<!-- BEGIN User Stats Section -->
+
+			<div class="user-stats">
+				<p>User Stats:</p>
+				<div>Average Score over all Quizzes:
+					<span class="stats-average-score">2</span>
+				</div>
+			</div>
+
+			<!-- END User Stats Section -->
+
+			<!-- BEGIN PAGE CONTENT INNER -->
+			<div class="row margin-top-10">
+			</div>
+			<div class="row">
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-12">
+					<!-- BEGIN PORTLET-->
+
+					<div class="portlet light tasks-widget">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart theme-font-color hide"></i>
+								<span class="caption-subject theme-font-color bold uppercase">CHARTS</span>
+								<span class="caption-helper">1 chart</span>
+								<!-- Drop-down form -->
+
+									x-axis:
+									<select name="x-axis">
+										<option value="Quiz">Quiz</option>
+										<option value="Score">Score</option>
+										<option value="Average Score">Average Score</option>
+										<option value="Ranking">Ranking</option>
+									</select>
+
+									y-axis:
+									<select name="y-axis">
+										<option value="Quiz">Quiz</option>
+										<option value="Score">Score</option>
+										<option value="Average Score">Average Score</option>
+										<option value="Ranking">Ranking</option>
+									</select>
+
+									<input type="submit" value="Submit">
+
+								</form>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="task-content">
+								<div class="scroller" style="height: 282px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+									<!-- START TASK LIST -->
+
+									<!--Div that will hold the bar chart-->
+							    <div id="top_x_div"></div>
+
+									<!-- END START TASK LIST -->
+								</div>
+							</div>
+							<div class="task-footer">
+								<div class="btn-arrow-link pull-right">
+									<a href="javascript:;">See All Tasks</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+			</div>
+			<!-- END PAGE CONTENT INNER -->
+
+			<!-- BEGIN PAGE CONTENT INNER -->
+			<div class="row margin-top-10">
+			</div>
+			<div class="row">
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-12">
+					<!-- BEGIN PORTLET-->
+
+					<div class="portlet light tasks-widget">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart theme-font-color hide"></i>
+								<span class="caption-subject theme-font-color bold uppercase">CHARTS</span>
+								<span class="caption-helper">1 chart</span>
+								<!-- Drop-down form -->
+								<form name="chartBuilder" action="static/frontend/indexPage/scripts/charts.js" method="get" onsubmit="return riyadSpike()">
+
+									x-axis:
+									<select name="x-axis">
+										<option value="Quiz">Quiz</option>
+										<option value="Score">Score</option>
+										<option value="Average Score">Average Score</option>
+										<option value="Ranking">Ranking</option>
+									</select>
+
+									y-axis:
+									<select name="y-axis">
+										<option value="Quiz">Quiz</option>
+										<option value="Score">Score</option>
+										<option value="Average Score">Average Score</option>
+										<option value="Ranking">Ranking</option>
+									</select>
+
+									<input type="submit" value="Submit">
+
+								</form>
+							</div>
+						</div>
+						<!-- <div id="list">Hey, this is the area that we want the ...</div> -->
+						<div class="portlet-body">
+							<div class="task-content">
+								<div class="scroller" style="height: 282px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+									<!-- START TASK LIST -->
+
+									<!--Div that will hold the pie chart-->
+							    <div id="chart_div"></div>
+
+									<!-- END START TASK LIST -->
+								</div>
+							</div>
+							<div class="task-footer">
+								<div class="btn-arrow-link pull-right">
+									<a href="javascript:;">See All Tasks</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+			</div>
+			<!-- END PAGE CONTENT INNER -->
+
+
+			<button type="button" onclick=queryToChart("helloFromStatsHTMLButton")>Click to Add Chart</button>
+
+		</div>
+	</div>
+	<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		 2016 <a href="" title="Discovering" target="_blank">Discovering</a>
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="../static/global/plugins/respond.min.js"></script>
+<script src="../static/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="../static/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="../static/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="../static/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<!-- IMPORTANT! fullcalendar depends on jquery-ui.min.js for drag & drop support -->
+<script src="../static/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+<script src="../static/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../static/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="../static/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="../static/admin/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="../static/admin/pages/scripts/index3.js" type="text/javascript"></script>
+<script src="../static/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- Handlebars for dynamically generating charts onto the page -->
+<script type="text/javascript" src="../static/global/plugins/handlebars/handlebars-v4.0.5.js" type="text/javascript"></script>
+<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- Load Parse API for use in charts.js -->
+<script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+<script src="../static/frontend/indexPage/scripts/charts.js" type="text/javascript"></script>
+<!-- Load script to compute any statistics for this page -->
+
+<script>
+jQuery(document).ready(function() {
+   Metronic.init(); // init metronic core componets
+   Layout.init(); // init layout
+//   Demo.init(); // init demo features
+
+    Index.init(); // init index page
+ Tasks.initDashboardWidget(); // init tash dashboard widget
+});
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

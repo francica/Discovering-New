@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+<head>
+		<meta id="obj_id" style="visibility: hidden" objectId='{{objectId}}'>
+		<meta charset="utf-8"/>
+    <title>Discovering - Timeline</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    {% include "style.html" %}
+    <link href="../static/organizations/css/organizations.css" rel="stylesheet" type="text/css">
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-md page-header-fixed page-sidebar-closed-hide-logo">
+<!-- BEGIN HEADER -->
+{% include "navbar.html" %}
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link href="../static/admin/pages/css/timeline-old.css" rel="stylesheet" type="text/css"/>
+<!-- END PAGE LEVEL STYLES -->
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content" style="margin-left: 0">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn blue">Save changes</button>
+							<button type="button" class="btn default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-head">
+				<!-- BEGIN SUB-PAGE TITLE -->
+				<div class="page-title">
+					<h1>Chart <small>shows user's statistics in a chart, for quick reference.</small></h1>
+				</div>
+				<div class="page-toolbar">
+				</div>
+			</div>
+			<!-- BEGIN PORTLET : BEGIN CHART DIV-->
+			<div class="portlet light tasks-widget" style="background: #ffb848;">
+				<div class="portlet-body">
+					<div class="task-content">
+						<!--Div that will hold the bar chart-->
+						<div id="top_x_div"></div>
+					</div>
+				</div>
+			</div>
+			<!-- END PORTLET : END CHART DIV-->
+
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-head">
+				<!-- BEGIN SUB-PAGE TITLE -->
+				<div class="page-title">
+					<h1>Achievements <small>shows user's achievements.</small></h1>
+				</div>
+				<div class="page-toolbar">
+				</div>
+			</div>
+			<!-- BEGIN PORTLET : BEGIN ACHIEVEMENTS CONTAINER DIV -->
+			<div class="portlet light tasks-widget">
+				<div class="portlet-body">
+					<div class="task-content">
+						<!-- BEGIN ACHIEVEMENTS DIV -->
+						<div id="achievements">
+							{% for achievement in achieve_data %}
+								<div id="achievementLabel{{loop.index}}" style="margin: 0 0 15px 0%;color: #fff;padding: 10px;font-weight: 300;position: relative;border-radius: 5px;
+									{% if loop.index % 6 == 1 %}
+										background: #ffb848;
+									{% endif %}
+									{% if loop.index % 6 == 2 %}
+										background: #4b8df8;
+									{% endif %}
+									{% if loop.index % 6 == 3 %}
+										background: #35aa47;
+									{% endif %}
+									{% if loop.index % 6 == 4 %}
+										background: #852b99;
+									{% endif %}
+									{% if loop.index % 6 == 5 %}
+										background: #e02222;
+									{% endif %}
+									{% if loop.index % 6 == 0 %}
+										background: #555555;
+									{% endif %}
+								">
+									<h4>{{achievement[0]}}</h4>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{achievement[1]}}</p>
+								</div>
+							{% endfor %}
+						</div>
+						<!-- END ACHIEVEMENTS DIV -->
+					</div>
+				</div>
+			</div>
+			<!-- END PORTLET : END ACHIEVEMENTS CONTAINER DIV -->
+
+			<!-- BEGIN PAGE HEAD -->
+			<div class="page-head">
+				<div class="page-title">
+					<h1>Timeline <small>shows user's quiz statistics, sorted by time of last answer.</small></h1>
+				</div>
+				<div class="page-toolbar">
+				</div>
+			</div>
+			<!-- BEGIN TIMELINE CONTENT-->
+			<div class="portlet light">
+				<div class="portlet-body">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- BEGIN TIMELINE TABLE -->
+							<ul class="timeline">
+								<!-- BEGIN QUIZ STATISTICS -->
+								{% for data in relevant_data %}
+									{% if loop.index % 6 == 1 %}
+										<li class="timeline-yellow">
+									{% endif %}
+									{% if loop.index % 6 == 2 %}
+										<li class="timeline-blue">
+									{% endif %}
+									{% if loop.index % 6 == 3 %}
+										<li class="timeline-green">
+									{% endif %}
+									{% if loop.index % 6 == 4 %}
+										<li class="timeline-purple">
+									{% endif %}
+									{% if loop.index % 6 == 5 %}
+										<li class="timeline-red">
+									{% endif %}
+									{% if loop.index % 6 == 0 %}
+										<li class="timeline-grey">
+									{% endif %}
+										<div class="timeline-time">
+											<span class="date">
+											Date: {{data[3]}} </span>
+										</div>
+										<div class="timeline-icon">
+											<i class="fa fa-trophy"></i>
+										</div>
+										<div class="timeline-body">
+											<h2>Quiz: {{data[0]}}</h2>
+											<div class="timeline-content">
+												Average Score: {{data[2]}}
+											</div>
+											<div class="timeline-footer">
+												<a href="javascript:;" class="nav-link pull-right">
+												<input type='button' id='specifyGeolocations{{loop.index}}' value='Toggle Map' style='color:black'>
+												</a>
+												<!-- BEGIN MAP DIV -->
+												<div id='question_map{{loop.index}}' style='height:100px; width:300px' style='display: none'>
+													<style type="text/css">
+														html, body { height: 100%; margin: 0; padding: 0; }
+														#question_map{{loop.index}} { height: 300px; width: 300px; }
+													</style>
+												</div>
+												<!-- END MAP DIV -->
+												<!-- BEGIN COMMENT DIV -->
+												<div class='timeline-footer' style='color:black'>
+													<div>
+														<textarea name='comment'></textarea>
+													</div>
+													<input type='button' value='Add Comment' id='addComment{{loop.index}}'>
+												</div>
+												<!-- END COMMENT DIV -->
+											</div>
+										</div>
+									</li>
+									<script>
+									/*
+									* The following code for hiding/showing a div taken from this post:
+									* http://stackoverflow.com/questions/4528085/toggle-show-hide-div-with-button
+									*/
+									var button = document.getElementById('specifyGeolocations{{loop.index}}'); // Assumes element with id='button'
+									button.onclick = function() {
+											var div = document.getElementById('question_map{{loop.index}}');
+											if (div.style.display == 'none') {
+													div.style.display = 'block';
+											}
+											else {
+													div.style.display = 'none';
+											}
+									};
+									</script>
+								{% endfor %}
+								<!-- BEGIN QUIZ STATISTICS -->
+								<!-- BEGIN LONG MAP GENERATION FUNCTION -->
+								<script>
+									{% for maps in relevant_data %}
+										var map{{loop.index}};
+									{% endfor %}
+									function initMap() {
+										{% for data in relevant_data %}
+											{% if data[5] %}
+												map{{loop.index}} = new google.maps.Map(document.getElementById('question_map{{loop.index}}'), {
+													center: {lat: {{data[5][1]}}, lng: {{data[5][2]}}},
+													zoom: 4,
+													scrollwheel: false
+												});
+												map{{loop.index}}.addListener('click', function() {
+													if(map{{loop.index}}.get('scrollwheel')) {
+														map{{loop.index}}.set('scrollwheel', false);
+													} else {
+														map{{loop.index}}.set('scrollwheel', true);
+													}
+												})
+											{% endif %}
+										{% endfor %}
+									}
+								</script>
+								<!-- END LONG MAP GENERATION FUNCTION -->
+							</ul>
+							<!-- END TIMELINE TABLE -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END TIMELINE CONTENT-->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner">
+        2016 &copy; Discovering
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- END FOOTER -->
+{% include "script.html" %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- Load Parse API for use in charts.js -->
+<script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+<script src="../static/frontend/indexPage/scripts/charts.js" type="text/javascript"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6bWcaUGesvwtfTAmNSxI51jVhpYDKvJc&callback=initMap" type="text/javascript"></script>
+<script src="../static/frontend/pages/scripts/search.js" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function () {
+        Metronic.init(); // init metronic core components
+        Layout.init(); // init current layout
+    });
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
